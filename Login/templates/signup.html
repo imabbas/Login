@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+  <h2 align='center' style= 'padding-right: 100px'>Register</h2>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <form method="post" style= 'padding-left: 675px'enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+              <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+            {% endfor %}
+            <button type="submit">Sign up</button>
+          </form>
+        </div>
+    </div>
+
+{% endblock %}
